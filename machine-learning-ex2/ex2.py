@@ -26,7 +26,7 @@ initial_theta = np.zeros((n + 1, 1));
 # Compute and display initial cost and gradient
 [cost, grad] = costFunction(initial_theta, X, y);
 
-fprintf('Cost at initial theta (zeros): %f\n', cost);
+print('Cost at initial theta (zeros): %f\n'  %(cost));
 fprintf('Expected cost (approx): 0.693\n');
 fprintf('Gradient at initial theta (zeros): \n');
 fprintf(' %f \n', grad);
