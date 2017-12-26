@@ -20,7 +20,7 @@ import math
 def costFunction(theta, X, y):
     m = y.shape[0]
     
-    htheta = sigmod(np.dot(X, theta))
+    htheta = sigmoid(np.dot(X, theta))
     J = 1 / m * np.sum(-y * math.log(htheta) - (1-y) * math.log(1 - htheta))
     
     grad = []

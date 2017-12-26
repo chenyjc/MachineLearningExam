@@ -25,4 +25,4 @@ def plotData(X,y):
     ax.legend(loc='upper right')
     
     plt.show()
-    return ax
+    pass
