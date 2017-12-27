@@ -7,7 +7,11 @@ Created on Tue Dec 26 18:52:13 2017
 Compute the sigmoid of each value of z (z can be a matrix, vector or scalar).
 
 """
-import math
+import numpy as np
 
 def sigmoid(z):
-    return 1 / (1+math.exp(-z))
+    print('inside sigmoid z=:\n',z)
+    g=np.zeros(np.shape(z))
+    g=1 / (1+np.exp(-z))
+    print('inside sigmoid g=:\n',g)
+    return (g)

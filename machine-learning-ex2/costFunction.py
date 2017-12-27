@@ -15,16 +15,35 @@ Return [J, grad]
 
 """
 
-import math
+import numpy as np
+
+from sigmoid import *
 
 def costFunction(theta, X, y):
+    #print('costFunction: shape of theta:', theta.shape)
+    #print('costFunction: theta:', theta)
+    theta = theta.reshape(X.shape[1], 1)
+    #print('costFunction: after reshape - theta:', theta)
     m = y.shape[0]
     
-    htheta = sigmoid(np.dot(X, theta))
-    J = 1 / m * np.sum(-y * math.log(htheta) - (1-y) * math.log(1 - htheta))
+    z=np.dot(X, theta)
+    htheta = sigmoid(z)
+
+    J = (np.dot(np.transpose(y), np.log(htheta)) + np.dot(np.transpose(1-y) , np.log(1 - htheta))) / (-m)
+    #grad= np.dot(np.transpose(X), (htheta - y)) / m
     
-    grad = []
-    for i in range(0,theta.shape[0]):
-        grad[i]= 1 / m * np.sum((htheta - y) * X[:,i])
+    return (J)
+    #return (J,grad)
+
+def gradient(theta, X, y):
+    m = y.shape[0]
     
-    return J,grad
+    theta = theta.reshape(X.shape[1], 1)
+    
+    z=np.dot(X, theta)
+    htheta = sigmoid(z)
+
+    grad= np.dot(np.transpose(X), (htheta - y)) / m
+    grad = np.transpose(grad)                
+    
+    return (grad)
