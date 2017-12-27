@@ -4,11 +4,14 @@ import os
 import numpy as np
 from math import *
 import scipy.optimize as opt
+import pylab as pl
 
 #from numpy import *
 
 from costFunction import *
 from plotData import *
+from plotDecisionBoundary import *
+from predict import *
 
 ## ==================== Part 1: Plotting ====================
 #  We start the exercise by first plotting the data to understand the 
@@ -18,13 +21,17 @@ data1=np.loadtxt('ex2/ex2data1.txt',delimiter=',')
 
 X=data1[:,[0,1]]
 y=data1[:,[2]]
-print('-------X---------------')
-print(X)
-print('-------y---------------')
-print(y)
+#print('-------X---------------')
+#print(X)
+#print('-------y---------------')
+#print(y)
 plotData(X,y)
+pl.xlabel('Exam 1 score')
+pl.ylabel('Exam 2 score')
+pl.legend(('Admitted', 'Not admitted'), loc = 'best')
+pl.show()
 print('\nProgram paused. Press enter to continue.\n');
-os.system("pause")
+#os.system("pause")
 
 ## ============ Part 2: Compute Cost and Gradient ============
 #  In this part of the exercise, you will implement the cost and gradient
@@ -41,17 +48,17 @@ X = np.append(np.ones((m, 1)), X, axis=1);
 initial_theta = np.zeros([n + 1, 1]);
 
 # Compute and display initial cost and gradient
-cost = costFunction(initial_theta, X, y);
-grad = gradient(initial_theta, X, y);
-#[cost, grad] = costFunction(initial_theta, X, y);
+#cost = costFunction(initial_theta, X, y);
+#grad = gradient(initial_theta, X, y);
+[cost, grad] = costFunction(initial_theta, X, y);
 
-print('Cost at initial theta (zeros): %f\n'  %(cost));
+print('Cost at initial theta (zeros): \n',  cost);
 print('Expected cost (approx): 0.693\n');
 print('Gradient at initial theta (zeros): \n');
 print(grad);
 print('Expected gradients (approx):\n -0.1000\n -12.0092\n -11.2628\n');
 print('\nProgram paused. Press enter to continue.\n');
-os.system("pause")
+##os.system("pause")
 
 ## ============= Part 3: Optimizing using fminunc  =============
 #  In this exercise, you will use a built-in function (fminunc) to find the
@@ -72,21 +79,20 @@ os.system("pause")
 #                            jac = gradient);
 #optimal_theta = Result.x;        
 
-#result = opt.fmin_tnc(func=costFunction, x0=initial_theta, args=(X, y), disp=5)
-#theta = result[0]
+result = opt.fmin_tnc(func=costFunction, x0=initial_theta, args=(X, y), disp=5)
+theta = result[0]
 
-result = opt.minimize(fun = costFunction, x0 = initial_theta,
-                     args = (X, y),
-                            method = 'TNC',
-                            jac = gradient);
-theta = result.x                     
+#result = opt.minimize(fun = costFunction, x0 = initial_theta,
+#                     args = (X, y),
+#                            method = 'TNC');
+#theta = result.x                     
 
 
 # Print theta to screen
-print('Cost at theta found by fminunc: %f\n', cost);
+print('Cost at theta found by fminunc: \n', cost);
 print('Expected cost (approx): 0.203\n');
 print('theta: \n');
-print(' %f \n', theta);
+print(theta);
 print('Expected theta (approx):\n');
 print(' -25.161\n 0.206\n 0.201\n');
 
@@ -94,7 +100,7 @@ print(' -25.161\n 0.206\n 0.201\n');
 plotDecisionBoundary(theta, X, y);
 
 print('\nProgram paused. Press enter to continue.\n');
-os.system("pause")
+##os.system("pause")
 
 
 ## ============== Part 4: Predict and Accuracies ==============
@@ -121,8 +127,8 @@ p = predict(theta, X);
            
 p = p.reshape(np.size(p), 1)
 
-print('p=:\n', p);
-print('y=:\n', y);
+#print('p=:\n', p);
+#print('y=:\n', y);
 
 print('Train Accuracy: %f\n' %(np.mean(p == y) * 100));
 print('Expected accuracy (approx): 89.0\n');

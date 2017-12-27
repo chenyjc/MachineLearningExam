@@ -17,7 +17,8 @@ import pylab as pl
 
 #
 # https://stackoverflow.com/questions/23451028/matplotlib-pyplot-vs-matplotlib-pylab
-# using pylab is better.
+# using pylab is better for iPython:
+# https://stackoverflow.com/questions/16849483/which-is-the-recommended-way-to-plot-matplotlib-or-pylab
 #
 
 #def plotData(X,y):
@@ -29,10 +30,9 @@ import pylab as pl
 #    ax.plot(X[neg,0],X[neg,1], 'yo')
 #    ax.set(xlabel='Exam1 score', ylabel ='Exam2 score',
 #       title='Exam1 Test Data')
-#    ax.legend(('Admited','Not Admited'),loc='upper right')
+#    ax.legend(('Admited','Not Admited'),loc='bottom right')
 #    
 #    plt.show()
-#    pass
 
 def plotData(X, y):
     # Find Indices of Positive and Negative Examples

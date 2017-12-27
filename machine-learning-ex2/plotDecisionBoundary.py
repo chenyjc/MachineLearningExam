@@ -6,7 +6,9 @@ Created on Wed Dec 27 17:42:13 2017
 """
 
 import numpy as np
+import pylab as pl
 from plotData import *
+from mapFeature import *
 
 def plotDecisionBoundary(theta, X, y):
     # Plot Data

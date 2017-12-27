@@ -30,20 +30,21 @@ def costFunction(theta, X, y):
     htheta = sigmoid(z)
 
     J = (np.dot(np.transpose(y), np.log(htheta)) + np.dot(np.transpose(1-y) , np.log(1 - htheta))) / (-m)
-    #grad= np.dot(np.transpose(X), (htheta - y)) / m
-    
-    return (J)
-    #return (J,grad)
-
-def gradient(theta, X, y):
-    m = y.shape[0]
-    
-    theta = theta.reshape(X.shape[1], 1)
-    
-    z=np.dot(X, theta)
-    htheta = sigmoid(z)
-
     grad= np.dot(np.transpose(X), (htheta - y)) / m
-    grad = np.transpose(grad)                
+    grad = np.transpose(grad)   
     
-    return (grad)
+#    return (J)
+    return (J,grad)
+
+#def gradient(theta, X, y):
+#    m = y.shape[0]
+#    
+#    theta = theta.reshape(X.shape[1], 1)
+#    
+#    z=np.dot(X, theta)
+#    htheta = sigmoid(z)
+#
+#    grad= np.dot(np.transpose(X), (htheta - y)) / m
+#    grad = np.transpose(grad)                
+#    
+#    return (grad)

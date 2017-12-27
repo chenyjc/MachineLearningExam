@@ -5,7 +5,8 @@ Created on Wed Dec 27 17:37:48 2017
 @author: cheyongj
 """
 
-from numpy import *
+import numpy as np
+from sigmoid import *
 
 def predict(theta, X):
 #PREDICT Predict whether the label is 0 or 1 using learned logistic 
@@ -16,17 +17,17 @@ def predict(theta, X):
     m = X.shape[0]; # Number of training examples
 
 # You need to return the following variables correctly
-    p = zeros((m, 1));
+    p = np.zeros((m, 1));
 
 # ====================== YOUR CODE HERE ======================
 # Instructions: Complete the following code to make predictions using
 #               your learned logistic regression parameters. 
 #               You should set p to a vector of 0's and 1's
 #
-    print('m=', m, 'theta=',theta,'p=', p)
+#    print('m=', m, 'theta=',theta,'p=', p)
     p = np.round(sigmoid( np.dot(X,theta)));
                
-    print('p=', p)
+#    print('p=', p)
     
     return p
 
